@@ -34,12 +34,19 @@
           <span class="label">${it.label}</span>${badges}
         </label>`;
       }).join('');
-      sec.innerHTML = `<h2>${cat.label}</h2>${rows}`;
+      sec.innerHTML = `<h2>${cat.label}</h2><div class="rule"></div>${rows}`;
       catsEl.appendChild(sec);
     }
 
     nameSel.addEventListener('change', () => { btn.disabled = !nameSel.value; });
+    catsEl.addEventListener('change', updateCount);
     btn.addEventListener('click', () => submit(data));
+    updateCount();
+  }
+
+  function updateCount() {
+    const n = catsEl.querySelectorAll('input:checked').length;
+    document.getElementById('count').textContent = `${n} pick${n === 1 ? '' : 's'}`;
   }
 
   function collect(data) {
