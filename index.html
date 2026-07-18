@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Madden's 2026 — What do you want to do?</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Madden's on Gull Lake — 2026</h1>
+    <p id="subtitle">Sat July 25 – Wed July 29, 2026</p>
+  </header>
+  <main>
+    <div class="card">
+      <div class="field">
+        <label for="name-select">Who are you?</label>
+        <select id="name-select" required>
+          <option value="" disabled selected>Pick your name…</option>
+        </select>
+      </div>
+      <div id="categories"></div>
+      <div class="actions">
+        <button id="submit-btn" type="button" disabled>Submit my picks</button>
+        <span id="status"></span>
+      </div>
+    </div>
+  </main>
+  <footer>Check everything you'd like to do — pick as many as you want.</footer>
+  <script src="config.js"></script>
+  <script src="form.js"></script>
+</body>
+</html>
