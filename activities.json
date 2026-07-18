@@ -1,0 +1,105 @@
+{
+  "meta": {
+    "title": "Madden's 2026 — What do you want to do?",
+    "dates": "Sat July 25 – Wed July 29, 2026",
+    "rawUrl": "https://raw.githubusercontent.com/<USER>/maddens-2026/main/activities.json"
+  },
+  "roster": [
+    { "name": "David", "family": "Peterson", "kid": false },
+    { "name": "Megan", "family": "Peterson", "kid": false },
+    { "name": "Artie", "family": "Peterson", "kid": true },
+    { "name": "Matilda", "family": "Peterson", "kid": true },
+    { "name": "Harald", "family": "Peterson", "kid": true },
+    { "name": "Brian", "family": "Udell", "kid": false },
+    { "name": "Erin", "family": "Udell", "kid": false },
+    { "name": "Evie", "family": "Udell", "kid": true },
+    { "name": "Sebastian", "family": "Udell", "kid": true },
+    { "name": "Curt", "family": "Hanrahan", "kid": false },
+    { "name": "Sue", "family": "Hanrahan", "kid": false },
+    { "name": "Tim", "family": "Hanrahan", "kid": false }
+  ],
+  "categories": [
+    {
+      "id": "water",
+      "label": "Water",
+      "items": [
+        { "label": "Pontoon cruise", "price": "$20" },
+        { "label": "Banana taxi tubing", "price": "$5" },
+        { "label": "Waterskiing lessons" },
+        { "label": "Boat tubing" },
+        { "label": "Kayak / paddleboard / hydrobike rental" },
+        { "label": "Inflatable water park" },
+        { "label": "Fishing (self-guided)" },
+        { "label": "Guided fishing (Walleye Dan)" },
+        { "label": "Swimming pools" },
+        { "label": "Beach & hot tub" },
+        { "label": "Motorized boat rental" }
+      ]
+    },
+    {
+      "id": "land",
+      "label": "Land & Sport",
+      "items": [
+        { "label": "Archery", "price": "$20" },
+        { "label": "Trap shooting", "price": "$75" },
+        { "label": "Axe throwing" },
+        { "label": "Bucket golf", "price": "$20" },
+        { "label": "Lawn bowling", "price": "$20" },
+        { "label": "Croquet", "price": "$10" },
+        { "label": "Pickleball" },
+        { "label": "Tennis" },
+        { "label": "Championship golf" },
+        { "label": "Social 9 family scramble" },
+        { "label": "Putting contest" },
+        { "label": "Resort lawn games" },
+        { "label": "Hiking & biking (resort bikes)" }
+      ]
+    },
+    {
+      "id": "kids",
+      "label": "Kids & Family",
+      "items": [
+        { "label": "Build-A-Buddy", "price": "$25", "age": "kid" },
+        { "label": "Junior golf", "age": "kid" },
+        { "label": "Medallion hunt" },
+        { "label": "Photo scavenger hunt" },
+        { "label": "Tie dye", "price": "$15" },
+        { "label": "Scratch art" },
+        { "label": "Pickleball paddle craft", "price": "$25" },
+        { "label": "Arcade & game room" },
+        { "label": "Bingo", "price": "$1/card" }
+      ]
+    },
+    {
+      "id": "evening",
+      "label": "Evening",
+      "items": [
+        { "label": "Trivia" },
+        { "label": "Glow golf", "price": "$15" },
+        { "label": "Karaoke (21+)", "age": "21+" },
+        { "label": "Live entertainment (21+)", "age": "21+" },
+        { "label": "Bonfire & s'mores" },
+        { "label": "Lakeside happy hour" }
+      ]
+    },
+    {
+      "id": "wellness",
+      "label": "Wellness",
+      "items": [
+        { "label": "Yoga", "price": "$15" },
+        { "label": "Beach boot camp", "price": "$20" },
+        { "label": "Spa services" },
+        { "label": "Fitness room" }
+      ]
+    },
+    {
+      "id": "offsite",
+      "label": "Off-site (Brainerd area)",
+      "items": [
+        { "label": "Cuyuna mountain biking" },
+        { "label": "Zip-lining" },
+        { "label": "E-bike rental (Jac's)" }
+      ]
+    }
+  ]
+}
