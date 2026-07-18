@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>This Week at Madden's — Our Schedule</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <svg class="emblem" viewBox="0 0 64 64" width="52" height="52" aria-hidden="true">
+      <polygon points="32,6 47,30 17,30" fill="#cfe8d6" />
+      <polygon points="32,20 52,48 12,48" fill="#a9d3ba" />
+      <rect x="29" y="47" width="6" height="11" rx="1" fill="#8a6a44" />
+    </svg>
+    <h1>This Week at Madden's</h1>
+    <p class="year">Our Trip</p>
+    <p id="subtitle">Sat July 25 – Wed July 29, 2026</p>
+  </header>
+  <main>
+    <nav class="pagenav"><a href="index.html">← Back to the activity picker</a></nav>
+
+    <div class="card day-card">
+      <h2>Every Day <span class="date">available all week</span></h2>
+      <div class="rule"></div>
+      <div id="daily" class="daily-list"></div>
+      <p class="day-note">Drop-in at the Tennis &amp; Croquet Club (8am–8pm): pickleball, croquet, archery,
+        axe throwing ($25), lawn bowling, shuffleboard, bucket golf, bike rentals, giant yard games &amp; crafts.
+        Water Ski School at the Marina ($80/half hr). Spa 9am–5pm.</p>
+    </div>
+
+    <div id="days"></div>
+
+    <p class="day-note" style="text-align:center; color:#cfe8d6; opacity:.75;">
+      Prices are per person and subject to change. Some activities need reservations (call the Front Desk / Marina).
+      Times are from Madden's published agenda for our week.
+    </p>
+  </main>
+  <footer>Not sure what to pick? Start with the <a href="index.html">activity picker</a>. 🌲</footer>
+
+  <script>
+    const DAILY = [
+      { time: '8am–11pm', name: 'Swimming pools', loc: 'Indoor Wilson Bay · Outdoor 9am–dusk' },
+      { time: '8am–8pm', name: 'Arcade & nostalgic games', loc: 'The Cove' },
+      { time: '8am–8pm', name: 'Boat / kayak / paddleboard rentals', loc: 'Marina' },
+      { time: '9am', name: 'Medallion hunt (clue drops)', loc: 'Tennis & Croquet Club' },
+      { time: 'all day', name: 'Family photo scavenger hunt', loc: 'Tennis & Croquet Club' },
+      { time: '3–5pm', name: 'Lakeside happy hour', loc: 'Mission Point' },
+      { time: '8–10pm', name: "Bonfire & s'mores", loc: 'Mission Point' },
+    ];
+
+    const DAYS = [
+      { day: 'Saturday', date: 'July 25', items: [
+        { time: '8–11am', name: '$5 Mimosas', loc: 'Mission Point', tag: '21+' },
+        { time: '8:30–9:30am', name: 'Beach Boot Camp', loc: 'Wilson Bay Beach', price: '$20' },
+        { time: '9–11am', name: 'Trap Shooting', loc: 'Tennis & Croquet Club', price: '$75' },
+        { time: '10–11am', name: 'Build-A-Buddy', loc: 'Tennis & Croquet Club', price: '$25', tag: 'kid' },
+        { time: '10am–5pm', name: 'Family Golf Scramble', loc: 'Social 9' },
+        { time: '12–2pm', name: 'Trap Shooting', loc: 'Tennis & Croquet Club', price: '$75' },
+        { time: '1–2pm', name: 'Tie Dye', loc: 'Tennis & Croquet Club', price: '$15/shirt' },
+        { time: '1–3pm', name: 'Banana Taxi Tubing', loc: 'Marina', price: '$5' },
+        { time: '4–4:45pm', name: 'Pontoon Cruise', loc: 'Marina', price: '$20' },
+        { time: '5–5:45pm', name: 'Pontoon Cruise', loc: 'Marina', price: '$20' },
+        { time: '8–9:30pm', name: 'Bingo', loc: 'Viking Room', price: '$1/card' },
+        { time: '9pm–12am', name: 'Live Music — Mark Ross', loc: "O'Madden Pub", tag: '21+' },
+      ]},
+      { day: 'Sunday', date: 'July 26', items: [
+        { time: '8–8:45am', name: 'Loon Pontoon Cruise', loc: 'Marina', price: '$20' },
+        { time: '8–11am', name: '$5 Mimosas', loc: 'Mission Point', tag: '21+' },
+        { time: '9–9:45am', name: 'Loon Pontoon Cruise', loc: 'Marina', price: '$20' },
+        { time: '9–10am', name: 'Yoga', loc: 'Colonial Hall', price: '$15' },
+        { time: '10–10:45am', name: 'Pontoon Cruise', loc: 'Marina', price: '$20' },
+        { time: '10–11am', name: 'Scratch Art', loc: 'Tennis & Croquet Club' },
+        { time: '11–11:45am', name: 'Pontoon Cruise', loc: 'Marina', price: '$20' },
+      ], note: 'Afternoon/evening slots weren’t on our copy of the agenda — check the resort board that day. All the Every-Day activities still run.' },
+      { day: 'Monday', date: 'July 27', items: [
+        { time: '9–11am', name: 'Archery', loc: 'Tennis & Croquet Club', price: '$20' },
+        { time: '10–10:45am', name: 'Pontoon Cruise', loc: 'Marina', price: '$20' },
+        { time: '10–11am', name: 'Build-A-Buddy', loc: 'Tennis & Croquet Club', price: '$25', tag: 'kid' },
+        { time: '11–11:45am', name: 'Pontoon Cruise', loc: 'Marina', price: '$20' },
+        { time: '12–2pm', name: 'Archery', loc: 'Tennis & Croquet Club', price: '$20' },
+        { time: '2–3pm', name: 'Lawn Bowling 101', loc: 'Tennis & Croquet Club', price: '$10' },
+        { time: '4–4:45pm', name: 'Pontoon Cruise', loc: 'Marina', price: '$20' },
+        { time: '4–6pm', name: 'Putting Contest', loc: 'Pine Beach East' },
+        { time: '5–5:45pm', name: 'Pontoon Cruise', loc: 'Marina', price: '$20' },
+        { time: '7–8pm', name: 'Trivia', loc: 'Tennis & Croquet Club' },
+      ]},
+      { day: 'Tuesday', date: 'July 28', items: [
+        { time: '9–10am', name: 'Yoga', loc: 'Colonial Hall', price: '$15' },
+        { time: '9–11am', name: 'Trap Shooting', loc: 'Tennis & Croquet Club', price: '$75' },
+        { time: '10–10:45am', name: 'Pontoon Cruise', loc: 'Marina', price: '$20' },
+        { time: '10–11am', name: 'Pickleball Paddle Craft', loc: 'Tennis & Croquet Club', price: '$25' },
+        { time: '11–11:45am', name: 'Pontoon Cruise', loc: 'Marina', price: '$20' },
+        { time: '12–2pm', name: 'Trap Shooting', loc: 'Tennis & Croquet Club', price: '$75' },
+        { time: '4–4:45pm', name: 'Pontoon Cruise', loc: 'Marina', price: '$20' },
+        { time: '5–5:45pm', name: 'Pontoon Cruise', loc: 'Marina', price: '$20' },
+        { time: '8:15–9:30pm', name: 'Bingo', loc: 'Viking Room', price: '$1/card' },
+      ]},
+      { day: 'Wednesday', date: 'July 29', items: [
+        { time: '9–10am', name: 'Pickleball Social', loc: 'Tennis & Croquet Club', price: '$20' },
+        { time: '10–10:45am', name: 'Pontoon Cruise', loc: 'Marina', price: '$20' },
+        { time: '10–11am', name: 'Build-A-Buddy', loc: 'Tennis & Croquet Club', price: '$25', tag: 'kid' },
+        { time: '10–11am', name: 'Scratch Art', loc: 'Tennis & Croquet Club' },
+        { time: '11–11:45am', name: 'Pontoon Cruise', loc: 'Marina', price: '$20' },
+        { time: '1–3pm', name: 'Banana Taxi Tubing', loc: 'Marina', price: '$5' },
+        { time: '2–3pm', name: 'Croquet 101', loc: 'Tennis & Croquet Club', price: '$10' },
+        { time: '6–7pm', name: 'Trivia', loc: 'Tennis & Croquet Club' },
+      ], note: 'We leave early Wednesday — the morning slots are the realistic window.' },
+    ];
+
+    const badge = (t, cls) => `<span class="badge ${cls}">${t}</span>`;
+    const tags = (it) => `<span class="tags">${[
+      it.price ? badge(it.price, 'price') : '',
+      it.tag === 'kid' ? badge('kid', 'kid') : '',
+      it.tag === '21+' ? badge('21+', 'adult') : '',
+    ].join('')}</span>`;
+
+    const slot = (it) => `<div class="slot">
+      <span class="time">${it.time}</span>
+      <span class="what"><span class="name">${it.name}</span><br><span class="loc">${it.loc}</span></span>
+      ${tags(it)}
+    </div>`;
+
+    document.getElementById('daily').innerHTML = DAILY.map(d =>
+      `<div class="slot"><span class="what"><span class="name">${d.name}</span> · <span class="loc">${d.loc} · ${d.time}</span></span></div>`
+    ).join('');
+
+    document.getElementById('days').innerHTML = DAYS.map(d => `
+      <div class="card day-card">
+        <h2>${d.day} <span class="date">${d.date}</span></h2>
+        <div class="rule"></div>
+        ${d.items.map(slot).join('')}
+        ${d.note ? `<p class="day-note">${d.note}</p>` : ''}
+      </div>
+    `).join('');
+  </script>
+</body>
+</html>

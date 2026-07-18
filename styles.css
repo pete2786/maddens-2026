@@ -148,3 +148,42 @@ button:disabled { opacity: .45; cursor: default; box-shadow: none; }
 #status.err { color: #a83030; }
 
 footer { text-align: center; color: #cfe8d6; opacity: .7; font-size: .85rem; padding: 20px 16px 34px; }
+footer a, .pagenav a { color: #e9c9a3; }
+
+/* ---------- page nav ---------- */
+.pagenav { text-align: center; margin: -6px 0 18px; }
+.pagenav a {
+  display: inline-block; text-decoration: none; font-weight: 700; font-size: .92rem;
+  padding: 9px 18px; border-radius: 999px;
+  background: rgba(255,255,255,.08); color: #eaf3ec; border: 1px solid rgba(255,255,255,.18);
+}
+.pagenav a:hover { background: rgba(255,255,255,.16); }
+
+/* ---------- schedule ---------- */
+.day-card { margin-bottom: 18px; }
+.day-card h2 {
+  display: flex; align-items: baseline; gap: 10px; margin: 0 0 4px;
+  font-family: Georgia, "Iowan Old Style", serif; font-weight: 600; font-size: 1.25rem;
+}
+.day-card h2 .date { font-family: inherit; font-size: .95rem; color: var(--muted); font-weight: 400; }
+.day-card .rule { height: 2px; background: linear-gradient(90deg, var(--accent), transparent); border-radius: 2px; margin-bottom: 6px; }
+.day-note { color: var(--muted); font-size: .88rem; font-style: italic; margin: 8px 2px 0; }
+.slot {
+  display: flex; align-items: baseline; gap: 12px; padding: 9px 4px;
+  border-bottom: 1px solid var(--line);
+}
+.slot:last-child { border-bottom: 0; }
+.slot .time {
+  flex: 0 0 92px; color: var(--green-600); font-weight: 700;
+  font-variant-numeric: tabular-nums; font-size: .86rem; line-height: 1.35;
+}
+.slot .what { flex: 1; }
+.slot .what .name { font-weight: 600; }
+.slot .what .loc { color: var(--muted); font-size: .85rem; }
+.slot .tags { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.daily-list { columns: 2; column-gap: 22px; }
+.daily-list .slot { break-inside: avoid; border-bottom: 0; padding: 6px 4px; display: block; }
+@media (max-width: 560px) {
+  .daily-list { columns: 1; }
+  .slot .time { flex-basis: 74px; }
+}

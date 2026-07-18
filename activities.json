@@ -60,7 +60,6 @@
       "label": "Kids & Family",
       "items": [
         { "label": "Build-A-Buddy", "price": "$25", "age": "kid" },
-        { "label": "Junior golf", "age": "kid" },
         { "label": "Medallion hunt" },
         { "label": "Photo scavenger hunt" },
         { "label": "Tie dye", "price": "$15" },
@@ -75,8 +74,6 @@
       "label": "Evening",
       "items": [
         { "label": "Trivia" },
-        { "label": "Glow golf", "price": "$15" },
-        { "label": "Karaoke (21+)", "age": "21+" },
         { "label": "Live entertainment (21+)", "age": "21+" },
         { "label": "Bonfire & s'mores" },
         { "label": "Lakeside happy hour" }
