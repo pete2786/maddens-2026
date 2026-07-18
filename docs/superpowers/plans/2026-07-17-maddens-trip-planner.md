@@ -14,7 +14,7 @@
 - `activities.json` is the ONLY place activities/roster are defined; page and Apps Script both read it.
 - Every activity `label` MUST be unique within its category and MUST NOT contain a comma (Google Forms joins multi-select cells with `, ` and Summary.gs splits on `, `).
 - Category ids are exactly: `water`, `land`, `kids`, `evening`, `wellness`, `offsite` — identical across `activities.json`, `config.js`, and `form.js`.
-- Roster: 12 people. Peterson: David, Megan, Artie(kid,11), Matilda(kid,8), Harald(kid,8). Udell: Brian, Erin, Evie(kid,14), Sebastian(kid,11). Hanrahan: Curt, Sue, Tim.
+- Roster: 12 people. Peterson: David, Megan, Artie(kid), Matilda(kid), Harald(kid). Udell: Brian, Erin, Evie(kid), Sebastian(kid). Hanrahan: Curt, Sue, Tim.
 - Trip label copy: `Sat July 25 – Wed July 29, 2026`.
 - Repo/user placeholders in code use the literal token `<USER>` where the GitHub username must later be substituted.
 

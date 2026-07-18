@@ -11,8 +11,8 @@ Sheet so the organizers can spot overlapping interests and hand-build a schedule
 
 Three families, 12 people, 5 kids:
 
-- **Peterson:** David (adult), Megan (adult), Artie (kid, 11), Matilda (kid, 8), Harald (kid, 8)
-- **Udell:** Brian (adult), Erin (adult), Evie (kid, 14), Sebastian (kid, 11)
+- **Peterson:** David (adult), Megan (adult), Artie (kid), Matilda (kid), Harald (kid)
+- **Udell:** Brian (adult), Erin (adult), Evie (kid), Sebastian (kid)
 - **Hanrahan:** Curt (adult), Sue (adult), Tim (adult)
 
 > Note: "Tim" was written as "Time" in the source message; treated as Tim. Easily

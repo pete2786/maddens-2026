@@ -2,7 +2,7 @@
   "meta": {
     "title": "Madden's 2026 — What do you want to do?",
     "dates": "Sat July 25 – Wed July 29, 2026",
-    "rawUrl": "https://raw.githubusercontent.com/<USER>/maddens-2026/main/activities.json"
+    "rawUrl": "https://raw.githubusercontent.com/pete2786/maddens-2026/main/activities.json"
   },
   "roster": [
     { "name": "David", "family": "Peterson", "kid": false },

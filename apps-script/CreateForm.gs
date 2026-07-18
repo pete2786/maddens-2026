@@ -1,7 +1,7 @@
 // Run createMaddensForm() once in the Apps Script editor (script.google.com).
 // It builds the Google Form from activities.json and logs everything you need
 // to paste into config.js. Set ACTIVITIES_URL to your pushed raw file first.
-const ACTIVITIES_URL = 'https://raw.githubusercontent.com/<USER>/maddens-2026/main/activities.json';
+const ACTIVITIES_URL = 'https://raw.githubusercontent.com/pete2786/maddens-2026/main/activities.json';
 
 function createMaddensForm() {
   const data = JSON.parse(UrlFetchApp.fetch(ACTIVITIES_URL).getContentText());
