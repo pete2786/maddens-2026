@@ -1,0 +1,51 @@
+:root {
+  --bg: #0f3d2e; --card: #ffffff; --ink: #1a2b23; --muted: #5c6b63;
+  --accent: #d98c2b; --line: #e4e9e6; --pill: #eef3f0;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: var(--ink); background: var(--bg);
+}
+header { text-align: center; color: #fff; padding: 28px 16px 8px; }
+header h1 { margin: 0 0 4px; font-size: 1.5rem; }
+header p { margin: 0; opacity: .85; }
+main { max-width: 760px; margin: 0 auto; padding: 16px; }
+.card {
+  background: var(--card); border-radius: 14px; padding: 20px;
+  box-shadow: 0 8px 30px rgba(0,0,0,.18); margin-bottom: 20px;
+}
+.field label { display: block; font-weight: 600; margin-bottom: 6px; }
+select {
+  width: 100%; padding: 10px 12px; font-size: 1rem;
+  border: 1px solid var(--line); border-radius: 8px; background: #fff;
+}
+.category { margin-top: 8px; }
+.category h2 {
+  font-size: 1.05rem; margin: 20px 0 8px; padding-bottom: 6px;
+  border-bottom: 2px solid var(--line);
+}
+.activity {
+  display: flex; align-items: center; gap: 10px; padding: 8px 6px;
+  border-radius: 8px;
+}
+.activity:hover { background: var(--pill); }
+.activity input { width: 18px; height: 18px; flex: 0 0 auto; }
+.activity .label { flex: 1; }
+.badge {
+  font-size: .72rem; font-weight: 600; padding: 2px 7px; border-radius: 999px;
+  background: var(--pill); color: var(--muted);
+}
+.badge.kid { background: #e7f0ff; color: #275ea8; }
+.badge.adult { background: #fbe7e7; color: #a83030; }
+.badge.price { background: #fff4e4; color: #a86a1f; }
+.actions { margin-top: 24px; display: flex; align-items: center; gap: 14px; }
+button {
+  background: var(--accent); color: #fff; border: 0; border-radius: 999px;
+  padding: 12px 26px; font-size: 1rem; font-weight: 600; cursor: pointer;
+}
+button:disabled { opacity: .5; cursor: default; }
+#status { font-weight: 600; }
+#status.ok { color: #1f7a4d; }
+#status.err { color: #a83030; }
+footer { text-align: center; color: #fff; opacity: .7; font-size: .85rem; padding: 8px 0 30px; }
