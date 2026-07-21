@@ -11,11 +11,12 @@
     .stat b { font-size: 2rem; font-family: Georgia, serif; color: var(--green-600); }
     .cap { color: var(--muted); font-size: .85rem; margin: 2px 2px 14px; }
     /* interest bars — single sequential hue (magnitude), value labelled */
-    .barrow { display: flex; align-items: center; gap: 10px; padding: 5px 0; }
-    .barrow .blabel { flex: 0 0 46%; font-weight: 600; font-size: .92rem; }
-    .bartrack { flex: 1; height: 15px; background: #ece4d3; border-radius: 5px; }
-    .barfill { height: 100%; background: var(--green-600); border-radius: 5px; min-width: 7px; }
-    .barval { flex: 0 0 2.4ch; text-align: right; font-weight: 700; color: var(--green-600); font-variant-numeric: tabular-nums; }
+    .barrow { display: flex; align-items: center; gap: 12px; padding: 6px 0; }
+    .barrow .blabel { flex: 0 0 40%; font-weight: 600; font-size: .92rem; }
+    .bartrack { flex: 1; height: 18px; background: #ece4d3; border-radius: 9px; overflow: hidden; }
+    .barfill { display: block; height: 100%; min-width: 8px; border-radius: 9px;
+      background: linear-gradient(90deg, #3f9a68, #2f7d54); }
+    .barval { flex: 0 0 2.2ch; text-align: right; font-weight: 700; color: var(--green-600); font-variant-numeric: tabular-nums; }
     .wins { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 18px; margin: 4px 0 2px; }
     .wins div { font-size: .92rem; }
     .wins b { color: var(--ink); }
