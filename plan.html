@@ -21,11 +21,18 @@
     .wins div { font-size: .92rem; }
     .wins b { color: var(--ink); }
     /* itinerary blocks */
-    .block { display: flex; gap: 12px; padding: 9px 4px; border-bottom: 1px solid var(--line); }
+    .headline { color: var(--muted); font-style: italic; font-size: .92rem; margin: 0 0 10px; }
+    .block { display: flex; gap: 12px; padding: 11px 4px; border-bottom: 1px solid var(--line); align-items: flex-start; }
     .block:last-child { border-bottom: 0; }
-    .block .when { flex: 0 0 82px; font-weight: 700; color: var(--green-600); font-size: .74rem; text-transform: uppercase; letter-spacing: .05em; padding-top: 2px; }
+    .tod { flex: 0 0 auto; width: 116px; display: inline-flex; align-items: center; justify-content: center; gap: 5px;
+      font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--green-600);
+      background: #eef6f0; border: 1px solid #d7e8dd; border-radius: 999px; padding: 4px 8px; }
+    .block .plan { flex: 1; }
     .block .plan .lead { font-weight: 600; }
     .block .plan .who { color: var(--muted); font-size: .85rem; }
+    .star { display: inline-block; background: var(--accent-soft); color: #a8501f; font-size: .66rem; font-weight: 800;
+      padding: 2px 8px; border-radius: 999px; margin-left: 6px; vertical-align: middle; white-space: nowrap; }
+    @media (max-width: 520px) { .tod { width: auto; } .block { flex-direction: column; gap: 6px; } }
     .pending { background: #fff7e8; border: 1px solid #f0dcae; color: #8a6a1f; border-radius: 12px; padding: 10px 14px; font-size: .9rem; font-weight: 600; margin-bottom: 16px; text-align: center; }
   </style>
 </head>
@@ -55,7 +62,7 @@
         <div>🌊 <b>Water:</b> inflatable park &amp; beach (9 each), pools (8), banana tubing (7)</div>
         <div>🏅 <b>Land:</b> tennis (7), then pickleball / golf scramble / lawn games (5)</div>
         <div>🌙 <b>Evening:</b> bingo (8), trivia (6), bonfire (4)</div>
-        <div>🚵 <b>Off-site:</b> Cuyuna MTB (4), zip-lining (2)</div>
+        <div>🚵 <b>Off-site:</b> Cuyuna MTB (4), e-bikes (1)</div>
         <div>🧸 <b>Kids:</b> tubing &amp; water park (all 4), arcade (3), bingo</div>
         <div>💆 <b>Wellness:</b> fitness (4), spa (3), yoga (2)</div>
       </div>
@@ -65,8 +72,7 @@
     <div id="itin"></div>
 
     <p class="day-note" style="text-align:center;color:#cfe8d6;opacity:.75;">
-      Prices are per person &amp; subject to change. Cuyuna MTB, zip-lining &amp; guided fishing need booking.
-      Confirm age minimums for axe throwing / trap shooting for the younger kids.
+      Prices are per person &amp; subject to change. Cuyuna MTB &amp; guided fishing are worth booking ahead.
     </p>
   </main>
   <footer>Not sure yet? Add your picks in the <a href="index.html">activity picker</a>. 🌲</footer>
@@ -88,36 +94,37 @@
       </div>`).join('');
 
     const DAYS = [
-      { day: 'Saturday', date: 'July 25 · arrival', blocks: [
-        { when: 'Afternoon', lead: '🍌 Banana taxi tubing 1–3pm + beach & inflatable park', who: 'the kids + whoever\'s in early ($5). Golf crew can join the Family Scramble (till 5pm).' },
-        { when: 'Evening', lead: '🎱 Bingo 8–9:30pm → 🔥 s\'mores after', who: '8 of 10 want bingo — the big group night. Only offered Sat & Tue.' },
-      ], note: 'Saturday flexes with your arrival time — bingo is the anchor everyone can make.' },
-      { day: 'Sunday', date: 'July 26', blocks: [
-        { when: 'Morning', lead: '🎣 Guided fishing · 🧘 Yoga 9am · 🛥️ pontoon/loon cruise', who: 'Fishing: Matilda, Erin, Sebastian · Yoga: Brian, Erin' },
-        { when: 'Afternoon', lead: '🌊 Beach + pools + inflatable water park', who: 'whole crew — the near-universal winner' },
-        { when: 'Evening', lead: '🔥 Bonfire & s\'mores', who: 'flex night, no fixed event' },
+      { day: 'Saturday', date: 'July 25 · arrival', headline: 'Settle in, then the whole-crew Bingo night.', blocks: [
+        { tod: '🌤️ Afternoon', lead: '🍌 Banana taxi tubing 1–3pm + beach & water park', who: 'Kids + whoever\'s in early ($5). Golf crew: Family Scramble till 5pm.' },
+        { tod: '🌙 Evening', lead: '🎱 Bingo 8–9:30pm → 🔥 s\'mores', star: '8 want it', who: 'The big group night — bingo\'s only Sat & Tue.' },
+      ], note: 'Flexes with your arrival time; bingo is the anchor everyone can make.' },
+      { day: 'Sunday', date: 'July 26', headline: 'Lake day — cruise, cast a line, and a lot of beach.', blocks: [
+        { tod: '☀️ Morning', lead: '🎣 Guided fishing · 🧘 Yoga 9am · 🛥️ pontoon cruise', who: 'Fishing: Matilda, Erin, Sebastian · Yoga: Brian, Erin' },
+        { tod: '🌤️ Afternoon', lead: '🌊 Beach + pools + inflatable water park', star: 'whole crew', who: 'The near-universal winner.' },
+        { tod: '🌙 Evening', lead: '🔥 Bonfire & s\'mores', who: 'Flex night, no fixed event.' },
       ]},
-      { day: 'Monday', date: 'July 27 · split day', blocks: [
-        { when: 'Morning', lead: '🚵 Cuyuna MTB off-site  //  🏹 Archery 9–11am at the resort', who: 'MTB: David, Brian, Erin, Sebastian · Archery: Harald, Artie' },
-        { when: 'Afternoon', lead: '🌊 Water & beach · ⛳ Putting contest 4–6pm', who: 'Putting: Curt, Sue, Brian, Erin' },
-        { when: 'Evening', lead: '❓ Trivia 7–8pm → 🔥 bonfire after', who: '6 want trivia — only Mon & Wed' },
+      { day: 'Monday', date: 'July 27', headline: 'Riders hit Cuyuna; Trivia at night.', blocks: [
+        { tod: '☀️ Morning', lead: '🚵 Cuyuna mountain biking (off-site)', star: 'the riders', who: 'David, Brian, Erin, Sebastian. Everyone else: beach + medallion hunt (clue drops 9am).' },
+        { tod: '🌤️ Afternoon', lead: '🌊 Water & beach · ⛳ Putting contest 4–6pm', who: 'Putting: Curt, Sue, Brian, Erin' },
+        { tod: '🌙 Evening', lead: '❓ Trivia 7–8pm → 🔥 bonfire', star: '6 want it', who: 'Trivia\'s only Mon & Wed.' },
       ]},
-      { day: 'Tuesday', date: 'July 28', blocks: [
-        { when: 'Morning', lead: '🧗 Zip-lining off-site · 🎯 Trap shooting 9/12 · 🧘 Yoga 9am', who: 'Zip: Matilda, Harald · Trap: David, Brian · Yoga: Brian, Erin' },
-        { when: 'Afternoon', lead: '🎾 Tennis / 🏓 pickleball · more beach & tubing', who: 'tennis crew (7) + pickleball crew (5)' },
-        { when: 'Evening', lead: '🔥 Bonfire & s\'mores', who: 'Bingo 8:15pm here is your rain backup' },
+      { day: 'Tuesday', date: 'July 28', headline: 'Trap shooting, tennis & pickleball.', blocks: [
+        { tod: '☀️ Morning', lead: '🎯 Trap shooting — 9am or 12pm', star: 'David & Brian', who: '$75 at the Tennis & Croquet Club. Also 🧘 Yoga 9am (Brian, Erin).' },
+        { tod: '🌤️ Afternoon', lead: '🎾 Tennis + 🏓 pickleball · more beach & tubing', star: 'biggest land crews', who: 'Tennis (7) and pickleball (5) — the two biggest sport groups.' },
+        { tod: '🌙 Evening', lead: '🔥 Bonfire & s\'mores', who: 'Bingo 8:15pm here is your rain backup.' },
       ]},
-      { day: 'Wednesday', date: 'July 29 · leave early', blocks: [
-        { when: 'Morning', lead: '🏓 Pickleball social 9am · 🧸 Build-A-Buddy 10am · last swim → 👋 depart', who: 'Pickleball: Curt, Sue, Brian, Erin, Sebastian · Build-A-Buddy: Matilda' },
+      { day: 'Wednesday', date: 'July 29 · leave early', headline: 'One last splash before the drive home.', blocks: [
+        { tod: '☀️ Morning', lead: '🏓 Pickleball social 9am · 🧸 Build-A-Buddy 10am · last swim → 👋 depart', who: 'Pickleball: Curt, Sue, Brian, Erin, Sebastian · Build-A-Buddy: Matilda' },
       ], note: 'Morning is the realistic window before heading out.' },
     ];
     document.getElementById('itin').innerHTML = DAYS.map(d => `
       <div class="card day-card">
         <h2>${d.day} <span class="date">${d.date}</span></h2>
         <div class="rule"></div>
+        ${d.headline ? `<p class="headline">${d.headline}</p>` : ''}
         ${d.blocks.map(b => `<div class="block">
-          <span class="when">${b.when}</span>
-          <span class="plan"><span class="lead">${b.lead}</span><br><span class="who">${b.who}</span></span>
+          <span class="tod">${b.tod}</span>
+          <span class="plan"><span class="lead">${b.lead}${b.star ? ` <span class="star">★ ${b.star}</span>` : ''}</span><br><span class="who">${b.who}</span></span>
         </div>`).join('')}
         ${d.note ? `<p class="day-note">${d.note}</p>` : ''}
       </div>`).join('');
