@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Madden's 2026 — The Plan</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .lede { text-align: center; color: var(--muted); margin: 0 0 6px; }
+    .stat { text-align: center; margin: 2px 0 4px; }
+    .stat b { font-size: 2rem; font-family: Georgia, serif; color: var(--green-600); }
+    .cap { color: var(--muted); font-size: .85rem; margin: 2px 2px 14px; }
+    /* interest bars — single sequential hue (magnitude), value labelled */
+    .barrow { display: flex; align-items: center; gap: 10px; padding: 5px 0; }
+    .barrow .blabel { flex: 0 0 46%; font-weight: 600; font-size: .92rem; }
+    .bartrack { flex: 1; height: 15px; background: #ece4d3; border-radius: 5px; }
+    .barfill { height: 100%; background: var(--green-600); border-radius: 5px; min-width: 7px; }
+    .barval { flex: 0 0 2.4ch; text-align: right; font-weight: 700; color: var(--green-600); font-variant-numeric: tabular-nums; }
+    .wins { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 18px; margin: 4px 0 2px; }
+    .wins div { font-size: .92rem; }
+    .wins b { color: var(--ink); }
+    /* itinerary blocks */
+    .block { display: flex; gap: 12px; padding: 9px 4px; border-bottom: 1px solid var(--line); }
+    .block:last-child { border-bottom: 0; }
+    .block .when { flex: 0 0 82px; font-weight: 700; color: var(--green-600); font-size: .74rem; text-transform: uppercase; letter-spacing: .05em; padding-top: 2px; }
+    .block .plan .lead { font-weight: 600; }
+    .block .plan .who { color: var(--muted); font-size: .85rem; }
+    .pending { background: #fff7e8; border: 1px solid #f0dcae; color: #8a6a1f; border-radius: 12px; padding: 10px 14px; font-size: .9rem; font-weight: 600; margin-bottom: 16px; text-align: center; }
+  </style>
+</head>
+<body>
+  <header>
+    <svg class="emblem" viewBox="0 0 64 64" width="52" height="52" aria-hidden="true">
+      <polygon points="32,6 47,30 17,30" fill="#cfe8d6" />
+      <polygon points="32,20 52,48 12,48" fill="#a9d3ba" />
+      <rect x="29" y="47" width="6" height="11" rx="1" fill="#8a6a44" />
+    </svg>
+    <h1>Madden's 2026 — The Plan</h1>
+    <p class="year">Sat July 25 – Wed July 29</p>
+  </header>
+  <main>
+    <nav class="pagenav">
+      <a href="index.html">← Activity picker</a>
+      <a href="schedule.html">Full schedule →</a>
+    </nav>
+
+    <div class="pending">📝 Draft based on 10 of 12 responses — waiting on Evie &amp; Tim, then we lock it.</div>
+
+    <div class="card">
+      <h2 style="font-family:Georgia,serif;margin:0 0 2px;">What the group wants</h2>
+      <p class="cap">How many of the 10 who answered checked each activity. 🌊 water park, beach, pools &amp; arcade are open all day; the rest have set times.</p>
+      <div id="bars"></div>
+      <div class="wins" style="margin-top:16px;">
+        <div>🌊 <b>Water:</b> inflatable park &amp; beach (9 each), pools (8), banana tubing (7)</div>
+        <div>🏅 <b>Land:</b> tennis (7), then pickleball / golf scramble / lawn games (5)</div>
+        <div>🌙 <b>Evening:</b> bingo (8), trivia (6), bonfire (4)</div>
+        <div>🚵 <b>Off-site:</b> Cuyuna MTB (4), zip-lining (2)</div>
+        <div>🧸 <b>Kids:</b> tubing &amp; water park (all 4), arcade (3), bingo</div>
+        <div>💆 <b>Wellness:</b> fitness (4), spa (3), yoga (2)</div>
+      </div>
+    </div>
+
+    <h2 style="color:#eaf3ec;font-family:Georgia,serif;text-align:center;margin:26px 0 12px;">A Sample Itinerary</h2>
+    <div id="itin"></div>
+
+    <p class="day-note" style="text-align:center;color:#cfe8d6;opacity:.75;">
+      Prices are per person &amp; subject to change. Cuyuna MTB, zip-lining &amp; guided fishing need booking.
+      Confirm age minimums for axe throwing / trap shooting for the younger kids.
+    </p>
+  </main>
+  <footer>Not sure yet? Add your picks in the <a href="index.html">activity picker</a>. 🌲</footer>
+
+  <script>
+    const BARS = [
+      ['🌊 Inflatable water park', 9], ['🏖️ Beach & hot tub', 9],
+      ['🏊 Swimming pools', 8], ['🎱 Bingo', 8],
+      ['🍌 Banana taxi tubing', 7], ['🎾 Tennis', 7],
+      ['❓ Trivia', 6], ['🛟 Boat tubing', 5],
+      ['⛳ Social 9 scramble', 5], ['🏓 Pickleball', 5],
+      ['🌳 Resort lawn games', 5], ['🚵 Cuyuna MTB', 4],
+    ];
+    document.getElementById('bars').innerHTML = BARS.map(([label, n]) => `
+      <div class="barrow">
+        <span class="blabel">${label}</span>
+        <span class="bartrack"><span class="barfill" style="width:${n * 10}%"></span></span>
+        <span class="barval">${n}</span>
+      </div>`).join('');
+
+    const DAYS = [
+      { day: 'Saturday', date: 'July 25 · arrival', blocks: [
+        { when: 'Afternoon', lead: '🍌 Banana taxi tubing 1–3pm + beach & inflatable park', who: 'the kids + whoever\'s in early ($5). Golf crew can join the Family Scramble (till 5pm).' },
+        { when: 'Evening', lead: '🎱 Bingo 8–9:30pm → 🔥 s\'mores after', who: '8 of 10 want bingo — the big group night. Only offered Sat & Tue.' },
+      ], note: 'Saturday flexes with your arrival time — bingo is the anchor everyone can make.' },
+      { day: 'Sunday', date: 'July 26', blocks: [
+        { when: 'Morning', lead: '🎣 Guided fishing · 🧘 Yoga 9am · 🛥️ pontoon/loon cruise', who: 'Fishing: Matilda, Erin, Sebastian · Yoga: Brian, Erin' },
+        { when: 'Afternoon', lead: '🌊 Beach + pools + inflatable water park', who: 'whole crew — the near-universal winner' },
+        { when: 'Evening', lead: '🔥 Bonfire & s\'mores', who: 'flex night, no fixed event' },
+      ]},
+      { day: 'Monday', date: 'July 27 · split day', blocks: [
+        { when: 'Morning', lead: '🚵 Cuyuna MTB off-site  //  🏹 Archery 9–11am at the resort', who: 'MTB: David, Brian, Erin, Sebastian · Archery: Harald, Artie' },
+        { when: 'Afternoon', lead: '🌊 Water & beach · ⛳ Putting contest 4–6pm', who: 'Putting: Curt, Sue, Brian, Erin' },
+        { when: 'Evening', lead: '❓ Trivia 7–8pm → 🔥 bonfire after', who: '6 want trivia — only Mon & Wed' },
+      ]},
+      { day: 'Tuesday', date: 'July 28', blocks: [
+        { when: 'Morning', lead: '🧗 Zip-lining off-site · 🎯 Trap shooting 9/12 · 🧘 Yoga 9am', who: 'Zip: Matilda, Harald · Trap: David, Brian · Yoga: Brian, Erin' },
+        { when: 'Afternoon', lead: '🎾 Tennis / 🏓 pickleball · more beach & tubing', who: 'tennis crew (7) + pickleball crew (5)' },
+        { when: 'Evening', lead: '🔥 Bonfire & s\'mores', who: 'Bingo 8:15pm here is your rain backup' },
+      ]},
+      { day: 'Wednesday', date: 'July 29 · leave early', blocks: [
+        { when: 'Morning', lead: '🏓 Pickleball social 9am · 🧸 Build-A-Buddy 10am · last swim → 👋 depart', who: 'Pickleball: Curt, Sue, Brian, Erin, Sebastian · Build-A-Buddy: Matilda' },
+      ], note: 'Morning is the realistic window before heading out.' },
+    ];
+    document.getElementById('itin').innerHTML = DAYS.map(d => `
+      <div class="card day-card">
+        <h2>${d.day} <span class="date">${d.date}</span></h2>
+        <div class="rule"></div>
+        ${d.blocks.map(b => `<div class="block">
+          <span class="when">${b.when}</span>
+          <span class="plan"><span class="lead">${b.lead}</span><br><span class="who">${b.who}</span></span>
+        </div>`).join('')}
+        ${d.note ? `<p class="day-note">${d.note}</p>` : ''}
+      </div>`).join('');
+  </script>
+</body>
+</html>
