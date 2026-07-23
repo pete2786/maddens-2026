@@ -52,15 +52,15 @@
       <a href="schedule.html">Full schedule →</a>
     </nav>
 
-    <div class="pending">📝 Draft based on 10 of 12 responses — waiting on Evie &amp; Tim, then we lock it.</div>
+    <div class="pending">📝 Draft based on 11 of 12 responses — just waiting on Tim, then we lock it.</div>
 
     <div class="card">
       <h2 style="font-family:Georgia,serif;margin:0 0 2px;">What the group wants</h2>
-      <p class="cap">How many of the 10 who answered checked each activity. 🌊 water park, beach, pools &amp; arcade are open all day; the rest have set times.</p>
+      <p class="cap">How many of the 11 who answered checked each activity. 🌊 water park, beach, pools &amp; arcade are open all day; the rest have set times.</p>
       <div id="bars"></div>
       <div class="wins" style="margin-top:16px;">
-        <div>🌊 <b>Water:</b> inflatable park &amp; beach (9 each), pools (8), banana tubing (7)</div>
-        <div>🏅 <b>Land:</b> tennis (7), then pickleball / golf scramble / lawn games (5)</div>
+        <div>🌊 <b>Water:</b> inflatable park &amp; beach (10 each), pools (9), banana tubing (8)</div>
+        <div>🏅 <b>Land:</b> tennis (8), then pickleball &amp; lawn games (6), golf scramble (5)</div>
         <div>🌙 <b>Evening:</b> bingo (8), trivia (6), bonfire (4)</div>
         <div>🚵 <b>Off-site:</b> Cuyuna MTB (4), e-bikes (1)</div>
         <div>🧸 <b>Kids:</b> tubing &amp; water park (all 4), arcade (3), bingo</div>
@@ -78,18 +78,19 @@
   <footer>Not sure yet? Add your picks in the <a href="index.html">activity picker</a>. 🌲</footer>
 
   <script>
+    const TOTAL = 11;
     const BARS = [
-      ['🌊 Inflatable water park', 9], ['🏖️ Beach & hot tub', 9],
-      ['🏊 Swimming pools', 8], ['🎱 Bingo', 8],
-      ['🍌 Banana taxi tubing', 7], ['🎾 Tennis', 7],
-      ['❓ Trivia', 6], ['🛟 Boat tubing', 5],
-      ['⛳ Social 9 scramble', 5], ['🏓 Pickleball', 5],
-      ['🌳 Resort lawn games', 5], ['🚵 Cuyuna MTB', 4],
+      ['🌊 Inflatable water park', 10], ['🏖️ Beach & hot tub', 10],
+      ['🏊 Swimming pools', 9], ['🎱 Bingo', 8],
+      ['🍌 Banana taxi tubing', 8], ['🎾 Tennis', 8],
+      ['🛟 Boat tubing', 6], ['🏓 Pickleball', 6],
+      ['🌳 Resort lawn games', 6], ['❓ Trivia', 6],
+      ['⛳ Social 9 scramble', 5], ['🚵 Cuyuna MTB', 4],
     ];
     document.getElementById('bars').innerHTML = BARS.map(([label, n]) => `
       <div class="barrow">
         <span class="blabel">${label}</span>
-        <span class="bartrack"><span class="barfill" style="width:${n * 10}%"></span></span>
+        <span class="bartrack"><span class="barfill" style="width:${(n / TOTAL * 100).toFixed(1)}%"></span></span>
         <span class="barval">${n}</span>
       </div>`).join('');
 
@@ -110,11 +111,11 @@
       ]},
       { day: 'Tuesday', date: 'July 28', headline: 'Trap shooting, tennis & pickleball.', blocks: [
         { tod: '☀️ Morning', lead: '🎯 Trap shooting — 9am or 12pm', star: 'David & Brian', who: '$75 at the Tennis & Croquet Club. Also 🧘 Yoga 9am (Brian, Erin).' },
-        { tod: '🌤️ Afternoon', lead: '🎾 Tennis + 🏓 pickleball · more beach & tubing', star: 'biggest land crews', who: 'Tennis (7) and pickleball (5) — the two biggest sport groups.' },
+        { tod: '🌤️ Afternoon', lead: '🎾 Tennis + 🏓 pickleball · more beach & tubing', star: 'biggest land crews', who: 'Tennis (8) and pickleball (6) — the two biggest sport groups.' },
         { tod: '🌙 Evening', lead: '🔥 Bonfire, s\'mores & chill by the lake', who: 'Easy last night. Bingo 8:15pm if anyone\'s up for it.' },
       ]},
       { day: 'Wednesday', date: 'July 29 · leave early', headline: 'One last splash before the drive home.', blocks: [
-        { tod: '☀️ Morning', lead: '🏓 Pickleball social 9am · 🧸 Build-A-Buddy 10am · last swim → 👋 depart', who: 'Pickleball: Curt, Sue, Brian, Erin, Sebastian · Build-A-Buddy: Matilda' },
+        { tod: '☀️ Morning', lead: '🏓 Pickleball social 9am · 🧸 Build-A-Buddy 10am · last swim → 👋 depart', who: 'Pickleball: Curt, Sue, Brian, Erin, Sebastian, Evie · Build-A-Buddy: Matilda' },
       ], note: 'Morning is the realistic window before heading out.' },
     ];
     document.getElementById('itin').innerHTML = DAYS.map(d => `
