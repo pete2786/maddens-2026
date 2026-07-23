@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Madden's 2026 — Who Picked What</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .chip { font-size: .64rem; font-weight: 800; padding: 2px 8px; border-radius: 999px; white-space: nowrap; text-transform: uppercase; letter-spacing: .03em; }
+    .chip.fam { background: #e7f0e9; color: #2f7d54; }
+    .chip.kid { background: #e7f0ff; color: #275ea8; }
+    .chip.adult { background: #f6e3d4; color: #a8501f; }
+    .legend { display: flex; gap: 14px; flex-wrap: wrap; margin: 4px 0 2px; font-size: .9rem; align-items: center; }
+    .glance div { margin: 6px 0; font-size: .93rem; }
+    .glance b { color: var(--ink); }
+    .tablewrap { overflow-x: auto; }
+    table.picks { width: 100%; border-collapse: collapse; font-size: .9rem; }
+    table.picks th { text-align: left; font-size: .66rem; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); border-bottom: 2px solid var(--line); padding: 7px 8px; }
+    table.picks td { padding: 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    td.act { font-weight: 600; }
+    td.cnt { text-align: center; font-weight: 800; color: var(--green-600); font-variant-numeric: tabular-nums; }
+    td.who { color: var(--muted); }
+    tr.off td.act { color: var(--muted); }
+    .offtag { display: inline-block; font-size: .6rem; color: #a8501f; font-weight: 800; text-transform: uppercase; margin-left: 4px; }
+    .zero { color: #b9b0a0; font-style: italic; }
+    .famhead { font-family: Georgia, serif; font-size: 1.15rem; margin: 16px 0 2px; }
+    .person { padding: 8px 4px; border-bottom: 1px solid var(--line); }
+    .person:last-child { border-bottom: 0; }
+    .pname { font-weight: 700; }
+    .ppicks { color: var(--muted); font-size: .9rem; }
+    .miss { color: #a8501f; font-weight: 600; }
+    h2.sec { font-family: Georgia, serif; margin: 0 0 4px; }
+  </style>
+</head>
+<body>
+  <header>
+    <svg class="emblem" viewBox="0 0 64 64" width="52" height="52" aria-hidden="true">
+      <polygon points="32,6 47,30 17,30" fill="#cfe8d6" />
+      <polygon points="32,20 52,48 12,48" fill="#a9d3ba" />
+      <rect x="29" y="47" width="6" height="11" rx="1" fill="#8a6a44" />
+    </svg>
+    <h1>Who Picked What</h1>
+    <p class="year">Madden's 2026</p>
+  </header>
+  <main>
+    <nav class="pagenav">
+      <a href="plan.html">← The plan</a>
+      <a href="index.html">Activity picker</a>
+      <a href="schedule.html">Schedule →</a>
+    </nav>
+
+    <div class="pending">📝 11 of 12 in — just waiting on Tim.</div>
+
+    <div class="card">
+      <h2 class="sec">At a glance</h2>
+      <div class="legend">
+        <span class="chip fam">Whole family</span>
+        <span class="chip kid">Kids</span>
+        <span class="chip adult">Adults / teens</span>
+      </div>
+      <div class="glance">
+        <div>🧒 <b>Mostly kids:</b> Build-A-Buddy, tie dye, scratch art, pickleball paddle craft.</div>
+        <div>🍸 <b>Adults / teens:</b> trap shooting, axe throwing, championship golf, lakeside happy hour, live music (21+), yoga, beach boot camp, spa, fitness.</div>
+        <div>👨‍👩‍👧‍👦 <b>Whole family (everything else):</b> all the water &amp; beach, tennis, pickleball, family scramble, lawn games, hiking/biking, bingo, trivia, bonfire, medallion &amp; scavenger hunts, Cuyuna MTB, zip-line.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 class="sec">By activity — who's in</h2>
+      <p class="cap">Sorted by popularity within each category. “For” is a rough guide, not a rule.</p>
+      <div id="byact"></div>
+    </div>
+
+    <div class="card">
+      <h2 class="sec">By person</h2>
+      <p class="cap">Everything each person checked.</p>
+      <div id="byperson"></div>
+    </div>
+
+    <p class="day-note" style="text-align:center;color:#cfe8d6;opacity:.75;">
+      Junior golf, glow golf &amp; karaoke were picked early but aren’t offered our week — shown greyed.
+    </p>
+  </main>
+  <footer>Ranked top list &amp; the itinerary live on <a href="plan.html">the plan</a>. 🌲</footer>
+
+  <script>
+    // ---- raw responses (single source; tallies derive from these) ----
+    const R = [
+      { name: 'David', fam: 'Peterson', kid: false, water: ['Waterskiing lessons','Kayak / paddleboard / hydrobike rental','Inflatable water park','Fishing (self-guided)','Swimming pools','Beach & hot tub'], land: ['Trap shooting','Tennis','Resort lawn games','Hiking & biking (resort bikes)'], kids: ['Medallion hunt','Bingo'], evening: ['Trivia','Lakeside happy hour'], wellness: ['Spa services','Fitness room'], offsite: ['Cuyuna mountain biking'] },
+      { name: 'Megan', fam: 'Peterson', kid: false, water: ['Inflatable water park','Swimming pools','Beach & hot tub'], land: ['Tennis'], kids: ['Arcade & game room','Bingo'], evening: ['Trivia','Karaoke (21+)'], wellness: ['Spa services','Fitness room'], offsite: [] },
+      { name: 'Artie', fam: 'Peterson', kid: true, water: ['Banana taxi tubing','Boat tubing','Kayak / paddleboard / hydrobike rental','Inflatable water park','Swimming pools','Beach & hot tub'], land: ['Archery','Bucket golf','Tennis','Championship golf'], kids: [], evening: ["Bonfire & s'mores"], wellness: [], offsite: [] },
+      { name: 'Matilda', fam: 'Peterson', kid: true, water: ['Banana taxi tubing','Boat tubing','Inflatable water park','Guided fishing (Walleye Dan)','Swimming pools','Motorized boat rental'], land: ['Bucket golf'], kids: ['Build-A-Buddy','Medallion hunt','Photo scavenger hunt','Arcade & game room'], evening: ['Glow golf'], wellness: [], offsite: ['Zip-lining'] },
+      { name: 'Harald', fam: 'Peterson', kid: true, water: ['Banana taxi tubing','Boat tubing','Inflatable water park','Fishing (self-guided)','Swimming pools','Beach & hot tub','Motorized boat rental'], land: ['Archery','Axe throwing','Hiking & biking (resort bikes)'], kids: ['Junior golf','Photo scavenger hunt','Tie dye','Arcade & game room','Bingo'], evening: ['Trivia','Glow golf',"Bonfire & s'mores"], wellness: [], offsite: ['Zip-lining'] },
+      { name: 'Brian', fam: 'Udell', kid: false, water: ['Banana taxi tubing','Kayak / paddleboard / hydrobike rental','Inflatable water park','Beach & hot tub','Motorized boat rental'], land: ['Trap shooting','Croquet','Pickleball','Tennis','Championship golf','Social 9 family scramble','Putting contest','Resort lawn games'], kids: ['Bingo'], evening: ['Trivia','Lakeside happy hour'], wellness: ['Yoga','Beach boot camp','Fitness room'], offsite: ['Cuyuna mountain biking'] },
+      { name: 'Erin', fam: 'Udell', kid: false, water: ['Pontoon cruise','Banana taxi tubing','Kayak / paddleboard / hydrobike rental','Inflatable water park','Guided fishing (Walleye Dan)','Swimming pools','Beach & hot tub'], land: ['Pickleball','Tennis','Social 9 family scramble','Resort lawn games'], kids: ['Medallion hunt','Bingo'], evening: ['Lakeside happy hour'], wellness: ['Yoga','Beach boot camp','Spa services','Fitness room'], offsite: ['Cuyuna mountain biking',"E-bike rental (Jac's)"] },
+      { name: 'Evie', fam: 'Udell', kid: true, water: ['Banana taxi tubing','Boat tubing','Inflatable water park','Swimming pools','Beach & hot tub','Motorized boat rental'], land: ['Pickleball','Tennis','Resort lawn games'], kids: [], evening: [], wellness: [], offsite: [] },
+      { name: 'Sebastian', fam: 'Udell', kid: true, water: ['Banana taxi tubing','Boat tubing','Inflatable water park','Fishing (self-guided)','Guided fishing (Walleye Dan)','Swimming pools','Beach & hot tub'], land: ['Axe throwing','Pickleball','Tennis','Championship golf','Social 9 family scramble','Resort lawn games','Hiking & biking (resort bikes)'], kids: ['Arcade & game room','Bingo'], evening: ["Bonfire & s'mores"], wellness: [], offsite: ['Cuyuna mountain biking'] },
+      { name: 'Curt', fam: 'Hanrahan', kid: false, water: ['Pontoon cruise','Beach & hot tub'], land: ['Pickleball','Championship golf','Social 9 family scramble','Resort lawn games','Hiking & biking (resort bikes)'], kids: ['Pickleball paddle craft','Bingo'], evening: ['Trivia','Live entertainment (21+)',"Bonfire & s'mores"], wellness: [], offsite: [] },
+      { name: 'Sue', fam: 'Hanrahan', kid: false, water: ['Banana taxi tubing','Boat tubing','Inflatable water park','Swimming pools','Beach & hot tub'], land: ['Pickleball','Tennis','Social 9 family scramble'], kids: ['Bingo'], evening: ['Trivia'], wellness: [], offsite: [] },
+    ];
+
+    // ---- master activity list with audience + display order ----
+    const CATS = [
+      { id: 'water', label: '🌊 Water', items: [
+        ['Pontoon cruise','fam'],['Banana taxi tubing','fam'],['Boat tubing','fam'],['Waterskiing lessons','fam'],
+        ['Kayak / paddleboard / hydrobike rental','fam'],['Inflatable water park','fam'],['Fishing (self-guided)','fam'],
+        ['Guided fishing (Walleye Dan)','fam'],['Swimming pools','fam'],['Beach & hot tub','fam'],['Motorized boat rental','fam'] ] },
+      { id: 'land', label: '🏅 Land & Sport', items: [
+        ['Tennis','fam'],['Pickleball','fam'],['Social 9 family scramble','fam'],['Resort lawn games','fam'],
+        ['Championship golf','adult'],['Hiking & biking (resort bikes)','fam'],['Archery','fam'],['Bucket golf','fam'],
+        ['Axe throwing','adult'],['Trap shooting','adult'],['Croquet','fam'],['Putting contest','fam'],['Lawn bowling','fam'] ] },
+      { id: 'kids', label: '🧸 Kids & Family', items: [
+        ['Bingo','fam'],['Arcade & game room','fam'],['Medallion hunt','fam'],['Photo scavenger hunt','fam'],
+        ['Build-A-Buddy','kid'],['Tie dye','kid'],['Pickleball paddle craft','kid'],['Scratch art','kid'],['Junior golf','kid',true] ] },
+      { id: 'evening', label: '🌙 Evening', items: [
+        ['Trivia','fam'],["Bonfire & s'mores",'fam'],['Lakeside happy hour','adult'],['Live entertainment (21+)','adult'],
+        ['Karaoke (21+)','adult',true],['Glow golf','fam',true] ] },
+      { id: 'wellness', label: '💆 Wellness', items: [
+        ['Fitness room','adult'],['Spa services','adult'],['Yoga','adult'],['Beach boot camp','adult'] ] },
+      { id: 'offsite', label: '🚵 Off-site', items: [
+        ['Cuyuna mountain biking','fam'],['Zip-lining','fam'],["E-bike rental (Jac's)",'adult'] ] },
+    ];
+    const AUD = { fam: 'Whole family', kid: 'Kids', adult: 'Adults / teens' };
+
+    document.getElementById('byact').innerHTML = CATS.map(cat => {
+      const rows = cat.items.map(([name, aud, off]) => {
+        const who = R.filter(r => r[cat.id].includes(name)).map(r => r.name);
+        return { name, aud, off: !!off, n: who.length, who };
+      }).sort((a, b) => b.n - a.n || cat.items.findIndex(i => i[0] === a.name) - cat.items.findIndex(i => i[0] === b.name));
+      const body = rows.map(x => `
+        <tr class="${x.off ? 'off' : ''}">
+          <td class="act">${x.name}${x.off ? '<span class="offtag">not this week</span>' : ''}</td>
+          <td><span class="chip ${x.aud}">${AUD[x.aud]}</span></td>
+          <td class="cnt">${x.n || ''}</td>
+          <td class="who">${x.who.length ? x.who.join(', ') : '<span class="zero">— none yet</span>'}</td>
+        </tr>`).join('');
+      return `<h3 style="font-family:Georgia,serif;margin:18px 0 4px;">${cat.label}</h3>
+        <div class="tablewrap"><table class="picks">
+          <thead><tr><th>Activity</th><th>For</th><th>#</th><th>Who picked it</th></tr></thead>
+          <tbody>${body}</tbody></table></div>`;
+    }).join('');
+
+    const FAMS = ['Peterson', 'Udell', 'Hanrahan'];
+    document.getElementById('byperson').innerHTML = FAMS.map(f => {
+      const people = R.filter(r => r.fam === f).map(p => {
+        const picks = [...p.water, ...p.land, ...p.kids, ...p.evening, ...p.wellness, ...p.offsite];
+        return `<div class="person"><span class="pname">${p.name}</span>
+          <span class="chip ${p.kid ? 'kid' : 'adult'}" style="margin-left:6px;">${p.kid ? 'kid' : 'adult'}</span>
+          <div class="ppicks">${picks.join(' · ')}</div></div>`;
+      }).join('');
+      const missing = f === 'Hanrahan' ? '<div class="person"><span class="pname">Tim</span> <span class="miss">— no response yet</span></div>' : '';
+      return `<div class="famhead">${f}</div>${people}${missing}`;
+    }).join('');
+  </script>
+</body>
+</html>
